@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.concurrent.TimeUnit;
+
 public class RegistrationPage {
     WebDriver driver;
     MainMethodsPage mainMethodsPage;
@@ -77,11 +79,12 @@ public class RegistrationPage {
         mainMethodsPage.sendKeysMethod(phoneNumberField, mainMethodsPage.getRandomPhoneNumber());
     }
 
-    public void selectRegionIntoForm() {
+    public void selectRegionIntoForm() throws InterruptedException {
         mainMethodsPage = new MainMethodsPage(driver);
         mainMethodsPage.clickToElement(regionSelection);
-        mainMethodsPage.moveToElement(selectLvivRegion);
-        mainMethodsPage.clickToElement(selectLvivRegion);
+        mainMethodsPage.sendKeysMethod(regionSelection,"ль");
+        mainMethodsPage.sendKeysMethod(regionSelection);
+
     }
 
     public void typeCityIntoForm(String city) {

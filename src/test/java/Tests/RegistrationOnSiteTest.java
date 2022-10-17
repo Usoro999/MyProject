@@ -13,8 +13,14 @@
         AuthorizationPage authorizationPage;
         RegistrationPage registrationPage;
 
-    @Test
-    public void registrationOnSite(){
+    @Test(priority = 0, description = "Registration")
+    public void registrationOnSite() throws InterruptedException {
+        mainMethodsPage = new MainMethodsPage(driver);
+        mainPage = new MainPage(driver);
+        authorizationPage = new AuthorizationPage(driver);
+        registrationPage = new RegistrationPage(driver);
+        leftMenuPage = new LeftMenuPage();
+
         //Go to the Account page
         mainPage.clickAccountButton();
         Assert.assertEquals(mainMethodsPage.getPageTitleText(),"Авторизация");
@@ -33,7 +39,7 @@
         registrationPage.typeCityIntoForm(TestData.customerCity);
         registrationPage.typeCityIndexIntoForm(TestData.customerPostcode);
         registrationPage.typeStreetIntoForm(TestData.customerStreet);
-        registrationPage.submitRegistration();
+        //registrationPage.submitRegistration();
 
         // Verify all customer data
 

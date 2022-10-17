@@ -15,7 +15,7 @@ import org.openqa.selenium.support.PageFactory;
         }
 
     // Web elements
-    @FindBy(xpath = "//a[@class = 'panel-user']")
+    @FindBy(xpath = "//span[contains(text(), 'Войти')]")
         WebElement userAccountButton;
 
 
