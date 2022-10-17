@@ -1,33 +1,37 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
+package Tests;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
 
 
 public class MainTest {
 
     WebDriver driver;
-    WebDriverWait wait;
 
-    @Before
-    public void setUp(){
+    @BeforeTest
+    public void setUp() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        System.out.print("Start Test");
+
         driver.get("https://chocoparadise.com.ua/");
         driver.manage().window().maximize();
+        TimeUnit.SECONDS.sleep(3);
+        Assert.assertEquals(driver.getTitle().contains("Сладкие подарки"), "Сладкие подарки");
 
     }
 
-    @After
+    @AfterTest
     public void tearDown(){
         if(driver != null)
             //  webDriver.close(); close window on the Mac
