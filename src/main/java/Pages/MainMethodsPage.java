@@ -20,7 +20,7 @@ public class MainMethodsPage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-    // Web elements
+
 
 
     // Methods

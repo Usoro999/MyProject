@@ -33,6 +33,8 @@ public class RegistrationPage {
     WebElement phoneNumberField;
     @FindBy(xpath = "//select[@id = 'register_zone_id']")
     WebElement regionSelection;
+    @FindBy(xpath = "//input[@name = 'register[city]']")
+    WebElement cityField;
     @FindBy(xpath = "//option[contains(text(), 'Ћьвовска€ область')]")
     WebElement selectLvivRegion;
     @FindBy(xpath = "//input[@id = 'register_postcode']")
@@ -79,7 +81,7 @@ public class RegistrationPage {
         mainMethodsPage.sendKeysMethod(phoneNumberField, mainMethodsPage.getRandomPhoneNumber());
     }
 
-    public void selectRegionIntoForm() throws InterruptedException {
+    public void selectRegionIntoForm()  {
         mainMethodsPage = new MainMethodsPage(driver);
         mainMethodsPage.clickToElement(regionSelection);
         mainMethodsPage.sendKeysMethod(regionSelection,"ль");
@@ -89,7 +91,7 @@ public class RegistrationPage {
 
     public void typeCityIntoForm(String city) {
         mainMethodsPage = new MainMethodsPage(driver);
-        mainMethodsPage.sendKeysMethod(LastNameField, city);
+        mainMethodsPage.sendKeysMethod(cityField, city);
     }
 
     public void typeCityIndexIntoForm(String index) {
