@@ -19,7 +19,7 @@
         mainPage = new MainPage(driver);
         authorizationPage = new AuthorizationPage(driver);
         registrationPage = new RegistrationPage(driver);
-        leftMenuPage = new LeftMenuPage();
+        leftMenuPage = new LeftMenuPage(driver);
 
         //Go to the Account page
         mainPage.clickAccountButton();
@@ -29,24 +29,23 @@
         Assert.assertEquals(registrationPage.getTextHeaderTitle(), "Быстрая регистрация");
 
         //Fill all valid data in to form fields
-        registrationPage.typeEmailIntoForm(TestData.customerEmail);
-        registrationPage.typePasswordIntoForm(TestData.customerPassword);
-        registrationPage.typePasswordConfirmationIntoForm(TestData.customerPassword);
-        registrationPage.typeFirstNameIntoForm(TestData.customerFirstName);
-        registrationPage.typeLastNameIntoForm(TestData.customerLastName);
-        registrationPage.typePhoneNumberIntoForm();
-        registrationPage.selectRegionIntoForm();
-        registrationPage.typeCityIntoForm(TestData.customerCity);
-        registrationPage.typeCityIndexIntoForm(TestData.customerPostcode);
-        registrationPage.typeStreetIntoForm(TestData.customerStreet);
-        registrationPage.submitRegistration();
-        Thread.sleep(5000);
+        registrationPage.typeEmailIntoForm(TestData.customerEmail)
+                        .typePasswordIntoForm(TestData.customerPassword)
+                        .typePasswordConfirmationIntoForm(TestData.customerPassword)
+                        .typeFirstNameIntoForm(TestData.customerFirstName)
+                        .typeLastNameIntoForm(TestData.customerLastName)
+                        .typePhoneNumberIntoForm()
+                        .selectRegionIntoForm()
+                        .typeCityIntoForm(TestData.customerCity)
+                        .typeCityIndexIntoForm(TestData.customerPostcode)
+                        .typeStreetIntoForm(TestData.customerStreet)
+                        .submitRegistration();
+
+        // Verify registration is successful
+        Assert.assertEquals(registrationPage.getTextHeaderTitleSuccessful(),"Ваша учётная запись создана!");
+
+
 
     }
-    /*    // Verify all customer data
-    @Test(priority = 0, description = "Check registration")
-    public void checkRegistrationOnSite() throws InterruptedException{
-
-        }*/
     }
 

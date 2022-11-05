@@ -1,19 +1,18 @@
-package Pages;
+    package Pages;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+    import org.openqa.selenium.WebDriver;
+    import org.openqa.selenium.WebElement;
+    import org.openqa.selenium.support.FindBy;
+    import org.openqa.selenium.support.PageFactory;
 
-import java.util.concurrent.TimeUnit;
-
-public class RegistrationPage {
-    WebDriver driver;
-    MainMethodsPage mainMethodsPage;
+    public class RegistrationPage {
+        WebDriver driver;
+        MainMethodsPage mainMethodsPage;
 
     public RegistrationPage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver,this);
+
     }
 
     // Web elements
@@ -43,71 +42,89 @@ public class RegistrationPage {
     WebElement streetField;
     @FindBy(xpath = "//a[@id = 'simpleregister_button_confirm']")
     WebElement submitButton;
+    @FindBy(xpath = "//a[contains(@class, 'btn-primary')]")
+    WebElement goAheadButton;
 
 
 
     // Methods
     public String getTextHeaderTitle(){
         mainMethodsPage = new MainMethodsPage(driver);
-        return mainMethodsPage.getHeaderTitleText(HeaderTitle);
+        return mainMethodsPage.getTextFromElement(HeaderTitle);
     }
 
-    public void typeEmailIntoForm(String text) {
+    public RegistrationPage typeEmailIntoForm(String text) {
         mainMethodsPage = new MainMethodsPage(driver);
         mainMethodsPage.sendKeysMethod(emailField, text);
+        return this;
     }
 
-    public void typePasswordIntoForm(String text) {
+    public RegistrationPage typePasswordIntoForm(String text) {
         mainMethodsPage = new MainMethodsPage(driver);
         mainMethodsPage.sendKeysMethod(passwordField, text);
+        return this;
     }
 
-    public void typePasswordConfirmationIntoForm(String text) {
+    public RegistrationPage typePasswordConfirmationIntoForm(String text) {
         mainMethodsPage = new MainMethodsPage(driver);
         mainMethodsPage.sendKeysMethod(passwordConfirmationField, text);
+        return this;
     }
 
-    public void typeFirstNameIntoForm(String text) {
+    public RegistrationPage typeFirstNameIntoForm(String text) {
         mainMethodsPage = new MainMethodsPage(driver);
         mainMethodsPage.sendKeysMethod(FirstNameField, text);
+        return this;
     }
 
-    public void typeLastNameIntoForm(String text) {
+    public RegistrationPage typeLastNameIntoForm(String text) {
         mainMethodsPage = new MainMethodsPage(driver);
         mainMethodsPage.sendKeysMethod(LastNameField, text);
+        return this;
     }
-    public void typePhoneNumberIntoForm() {
+    public RegistrationPage typePhoneNumberIntoForm() {
         mainMethodsPage = new MainMethodsPage(driver);
         mainMethodsPage.sendKeysMethod(phoneNumberField, mainMethodsPage.getRandomPhoneNumber());
+        return this;
     }
 
-    public void selectRegionIntoForm()  {
+    public RegistrationPage selectRegionIntoForm()  {
         mainMethodsPage = new MainMethodsPage(driver);
         mainMethodsPage.clickToElement(regionSelection);
         mainMethodsPage.sendKeysMethod(regionSelection,"ль");
-        mainMethodsPage.sendKeysMethod(regionSelection);
+        mainMethodsPage.sendKeyENTER(regionSelection);
+        return this;
 
     }
 
-    public void typeCityIntoForm(String city) {
+    public RegistrationPage typeCityIntoForm(String city) {
         mainMethodsPage = new MainMethodsPage(driver);
         mainMethodsPage.sendKeysMethod(cityField, city);
+        return this;
     }
 
-    public void typeCityIndexIntoForm(String index) {
+    public RegistrationPage typeCityIndexIntoForm(String index) {
         mainMethodsPage = new MainMethodsPage(driver);
         mainMethodsPage.sendKeysMethod(postcode, index);
+        return this;
     }
 
-    public void typeStreetIntoForm(String street) {
+    public RegistrationPage typeStreetIntoForm(String street) {
         mainMethodsPage = new MainMethodsPage(driver);
         mainMethodsPage.sendKeysMethod(streetField, street);
+        return this;
     }
 
 
-    public void submitRegistration() {
+    public RegistrationPage submitRegistration() {
         mainMethodsPage = new MainMethodsPage(driver);
         mainMethodsPage.clickToElement(submitButton);
+        return this;
 
+    }
+
+    public String getTextHeaderTitleSuccessful() {
+        mainMethodsPage = new MainMethodsPage(driver);
+        return mainMethodsPage.getTextFromElement(goAheadButton);
     }
 }
