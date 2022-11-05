@@ -44,6 +44,8 @@
     WebElement submitButton;
     @FindBy(xpath = "//a[contains(@class, 'btn-primary')]")
     WebElement goAheadButton;
+    @FindBy(xpath = "//h1")
+    WebElement headerSuccessful;
 
 
 
@@ -125,6 +127,6 @@
 
     public String getTextHeaderTitleSuccessful() {
         mainMethodsPage = new MainMethodsPage(driver);
-        return mainMethodsPage.getTextFromElement(goAheadButton);
+        return mainMethodsPage.getTextFromElement(headerSuccessful);
     }
 }
