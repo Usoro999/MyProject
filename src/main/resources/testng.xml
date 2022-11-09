@@ -3,10 +3,11 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="C:/Users/Shocoman/IdeaProjects/MyPro">
         <classes>
-            <class name="Tests.OrderTest"><methods><include name="OrderOnTheSite"/></methods>
-            </class>
             <class name="Tests.RegistrationTest"><methods><include name="registrationOnSite"/></methods>
             </class>
+            <class name="Tests.OrderTest"><methods><include name="OrderOnTheSite"/></methods>
+            </class>
+
         </classes>
     </test>
 </suite>
